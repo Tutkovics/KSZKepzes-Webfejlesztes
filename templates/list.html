@@ -1,2 +1,25 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
-<h1>Hello {{name}}! </h1>
+ <html>
+    <head>
+     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+     </head>
+     <body>
+     <h1>Best ToDo list program</h1>
+    <ul>
+         {% for task in tasks %}
+         <li>
+         {% if task.done %}<strike>{% endif %}
+             {{task.content}}
+         {% if task.done %}</strike>{% endif %}
+         <a href="/done/{{task.id}}">Done</a>
+         <a href="/delete/{{task.id}}">Delete</a>
+         </li>
+         {% endfor %}
+     </ul>
+<form action="/task" method="POST">
+<input type="text" name="content">
+<input type="submit" value="Add">
+
+</form>
+ </body>
+ </html>
+        
